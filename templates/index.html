@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Math Galleria</title>
+  <!-- Tailwind via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Plotly CDN -->
+  <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+  <style>
+    .card { @apply rounded-2xl shadow-xl p-5; }
+    .pill { @apply px-3 py-1 rounded-full text-sm font-medium; }
+  </style>
+</head>
+<body class="min-h-screen bg-slate-50 text-slate-900" id="body">
+  <div class="max-w-7xl mx-auto p-6 space-y-6">
+    <header class="flex items-center justify-between">
+      <h1 class="text-3xl font-bold">🧮 Math Galleria</h1>
+      <div class="flex items-center gap-3">
+        <label class="flex items-center gap-2">
+          <span class="text-sm">Dark</span>
+          <input id="theme" type="checkbox" class="toggle">
+        </label>
+        <a class="pill bg-indigo-600 text-white" href="https://github.com/9arvit/Math-Galleria" target="_blank" rel="noreferrer">Star if you like ⭐</a>
+      </div>
+    </header>
+
+    <section class="grid md:grid-cols-3 gap-6">
+      <!-- Controls -->
+      <div class="card bg-white md:col-span-1 space-y-4">
+        <h2 class="text-xl font-semibold">Controls</h2>
+
+        <div class="space-y-2">
+          <label class="block text-sm font-medium">Mode</label>
+          <select id="mode" class="w-full border rounded-lg p-2">
+            <option value="cartesian">Cartesian: y = f(x)</option>
+            <option value="parametric">Parametric: (x(t), y(t))</option>
+            <option value="polar">Polar: r(θ)</option>
+          </select>
+        </div>
+
+        <div class="space-y-2">
+          <label class="block text-sm font-medium">Preset (optional)</label>
+          <select id="preset" class="w-full border rounded-lg p-2">
+            <option value="">— None —</option>
+            <option value="lissajous">Lissajous</option>
+            <option value="rose">Rose</option>
+            <option value="hypotrochoid">Hypotrochoid</option>
+            <option value="harmanograph">Harmanograph</option>
+          </select>
+        </div>
+
+        <div id="fields" class="space-y-3"></div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="text-sm block">Line width</label>
+            <input id="linewidth" type="number" value="2" step="0.5" class="w-full border rounded-lg p-2">
+          </div>
+          <label class="text-sm flex items-center gap-2">
+            <input id="markers" type="checkbox">
+            Show markers
+          </label>
+        </div>
+
+        <button id="plotBtn" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl py-2 font-semibold">Plot 🔮</button>
+      </div>
+
+      <!-- Plot -->
+      <div class="card bg-white md:col-span-2 space-y-3">
+        <div id="graph" class="w-full h-[520px] rounded-xl"></div>
+        <div id="messages" class="text-sm text-rose-600"></div>
+        <div id="trivia" class="text-sm text-slate-700 grid gap-2"></div>
+      </div>
+    </section>
+
+    <footer class="text-center text-xs text-slate-500">Made with Flask + Plotly + SymPy · Try presets for instant art !</footer>
+  </div>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
